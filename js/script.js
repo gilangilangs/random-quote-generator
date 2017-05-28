@@ -1,4 +1,4 @@
-var quoteSource=[
+var quotes=[
 	   {
 			quote: "Start by doing what's necessary; then do what's possible; and suddenly you are doing the impossible.",
 			name:"Francis of Assisi"
@@ -99,22 +99,24 @@ var quoteSource=[
 	];
 var QuoteSrc = document.getElementsByClassName("quote");
 var SourceSrc = document.getElementsByClassName("source");
+var quoteContainer = document.getElementById('quote-box');
 var temp = 0;
-function printQuote(){
-  var quoteContainer = document.getElementById('quote-box');
-  var randNum = Math.floor(Math.random()*quoteSource.length);
-  for (var i = 0; i < quoteSource.length; i++) {
-    var newQuote = quoteSource[randNum].quote;
-    var newSource = quoteSource[randNum].name;
+var temp = 
+function getRandom(){
+  var randNum = Math.floor(Math.random()*quotes.length);
+  for (var i = 0; i < quotes.length; i++) {
+    var newQuote = quotes[randNum].quote;
+    var newSource = quotes[randNum].name;
     console.log(newQuote);
     console.log(temp);
     if (temp != randNum ) {
       quoteContainer.innerHTML = '<p class="quote">'+newQuote+'</p>'+'<p class="source">'+newSource+'</p>';
     }
     temp = randNum;
-   // QuoteSrc.innerHTML = '<p class="quote">'+newQuote+'</p>';
-   // SourceSrc.innerHTML = '<p class="quote">'+newSource+'</p>';
   break;
   }
 } 
+function printQuote() {
+	getRandom();
+}
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
