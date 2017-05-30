@@ -101,7 +101,6 @@ var QuoteSrc = document.getElementsByClassName("quote");
 var SourceSrc = document.getElementsByClassName("source");
 var quoteContainer = document.getElementById('quote-box');
 var temp = 0;
-var temp = 
 function getRandom(){
   var randNum = Math.floor(Math.random()*quotes.length);
   for (var i = 0; i < quotes.length; i++) {
