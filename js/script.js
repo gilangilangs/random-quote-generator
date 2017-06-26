@@ -1,7 +1,13 @@
+var message = '';
+var red;
+var green;
+var blue;
+var viewedQuotes =[];
+
 var quotes=[
 	   {
-			quote: "Start by doing what's necessary; then do what's possible; and suddenly you are doing the impossible.",
-			name:"Francis of Assisi"
+		quote: "Start by doing what's necessary; then do what's possible; and suddenly you are doing the impossible.",
+		name:"Francis of Assisi"
 	    },
 	    {
 	    	quote:"Believe you can and you're halfway there.",
@@ -84,7 +90,7 @@ var quotes=[
 	    	name:"George Carlin"
 	    },
 	    {
-	    	quote:"Always do whatever's next.",
+	    	quote:"Always do wh atever's next.",
 	    	name:"George Carlin"
 	    },
 	    {
@@ -97,25 +103,40 @@ var quotes=[
 	    }
 
 	];
-var QuoteSrc = document.getElementsByClassName("quote");
-var SourceSrc = document.getElementsByClassName("source");
-var quoteContainer = document.getElementById('quote-box');
-var temp = 0;
-function getRandom(){
-  var randNum = Math.floor(Math.random()*quotes.length);
-  for (var i = 0; i < quotes.length; i++) {
-    var newQuote = quotes[randNum].quote;
-    var newSource = quotes[randNum].name;
-    console.log(newQuote);
-    console.log(temp);
-    if (temp != randNum ) {
-      quoteContainer.innerHTML = '<p class="quote">'+newQuote+'</p>'+'<p class="source">'+newSource+'</p>';
-    }
-    temp = randNum;
-  break;
-  }
-} 
-function printQuote() {
-	getRandom();
+
+//function to declare element ID qoute-box
+function print(quote) {
+	var outputDiv = document.getElementById('quote-box');
+	outputDiv.innerHTML = quote;
+}
+//function to get random qoute
+function getRandomQuote() {
+	var randomQuote = Math.floor(Math.random() * quotes.length);
+	var splicedQuote = quotes.splice(randomQuote, 1)[0];
+	viewedQuotes.push(splicedQuote);
+	if ( quotes.length === 0 ) {
+		quotes = viewedQuotes;
+		viewedQuotes = [];
+	}
+	return splicedQuote;
+}
+
+//function to get another color
+function randomColorGenerator() {
+	var randomColor;
+	red = Math.floor(Math.random() * 256 );
+	green = Math.floor(Math.random() * 256 );
+	blue = Math.floor(Math.random() * 256 );
+	randomColor = 'rgb(' + red + ',' + green + ',' + blue + ')';
+	return randomColor;
+}
+
+//function to print function getRandomQuote and randomColorGenerator
+function printQuote(){
+	var quotes = getRandomQuote();
+	message ='<p class="quote">' + quotes.quote + '</p>' + '<p class="source">' + quotes.name;
+	print(message);
+	randomColorGenerator();
+	document.getElementById('bgcolor').style.backgroundColor = randomColorGenerator();
 }
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
